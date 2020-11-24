@@ -18,8 +18,6 @@
 
 ## 🏁 Getting Started
 
-<br>
-
 ### Follow the [Environment setup section](https://github.com/HackYourFuture-CPH/react-native#environment-setup) of React Native course.
 
 <br>
@@ -40,7 +38,7 @@ or
 
 <br>
 
-```npm run [ios|android|web]```
+`npm run [ios|android|web]`
 
 or
 
