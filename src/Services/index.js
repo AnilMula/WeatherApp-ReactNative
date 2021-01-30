@@ -1,4 +1,5 @@
-const token = 'f9d2be6af465b2eb9554747c44c88614';
+const token = '2243f146d7692bb3277bf2b24453a083';
+
 const url = 'https://api.openweathermap.org/data/2.5/weather';
 const responseConf = async (response) => {
   if (!response.ok) {
@@ -22,7 +23,7 @@ export const getWeatherByCityID = async (id) => {
   if (!id) {
     throw new Error('You need to provide id');
   }
-  const response = await fetch(`${url}?id=${id}&APPID=${token}`);
+  const response = await fetch(`${url}?id=${id}&units=metric&APPID=${token}`);
 
   return responseConf(response);
 };
@@ -37,10 +38,12 @@ export const getWeatherByZip = async (zip, country) => {
   return responseConf(response);
 };
 
-export const forecastFor7days = async(lat,lon) => {
+export const forecastFor7days = async (lat, lon) => {
   if (!lat && !lon) {
-    throw new Error('You need to provide city');
+    throw new Error('You need to provide longitude and lattitude');
   }
-  const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}.441792&lon=${lon}&exclude=hourly,daily&appid=${token}`);
+  const response = await fetch(
+    `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${token}`
+  );
   return responseConf(response);
-}
+};

@@ -1,10 +1,12 @@
-import React from "react";
-import { Text, View } from "react-native";
+import React from 'react';
+import { Text, View } from 'react-native';
+import { Header } from './Header/Header';
 
 export const WeeklyScreen = () => {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Weekly Screen</Text>
+    <View>
+      <Header />
+      <Text>{'weekly screen'}</Text>
     </View>
   );
 };
