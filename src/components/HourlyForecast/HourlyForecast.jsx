@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
-import { hour } from '../../Services/Metrics';
+import { hour, time } from '../../Services/Metrics';
 import { Temperature } from '../Temperature/Temperature';
 
-export const HourlyForecast = ({ hourly }) => {
+export const HourlyForecast = ({ hourly, timeZone }) => {
   return (
     <View
       style={{
@@ -21,8 +21,7 @@ export const HourlyForecast = ({ hourly }) => {
     >
       {hourly?.slice(1, 8).map((data) => (
         <View key={data.dt}>
-          <Text>{hour(data.dt)}</Text>
-
+          <Text>{hour(data.dt + timeZone - 3600)}</Text>
           <View style={{ justifyContent: 'center' }}>
             <Image
               style={{ height: 20, width: 10 }}

@@ -15,10 +15,11 @@ const months = [
   'Dec',
 ];
 
-const date = () => {
-  const date = new Date().getDate(); //Current Date
-  const month = new Date().getMonth(); //Current Month
-  const day = new Date().getDay();
+const date = (timeStamp, timeZone) => {
+  const dt = new Date((timeStamp + timeZone) * 1000);
+  const date = dt.getDate(); //Current Date
+  const month = dt.getMonth(); //Current Month
+  const day = dt.getDay();
   return days[day] + ',' + date + ' ' + months[month];
 };
 const day = (timeStamp) => {
@@ -29,9 +30,10 @@ const hour = (timeStamp) => {
   if (hrs >= 0 && hrs <= 9) return `0${hrs}:00`;
   return `${hrs}:00`;
 };
-const time = () => {
-  const hours = new Date().getHours(); //Current Hours
-  const min = new Date().getMinutes(); //Current Minutes
+const time = (timeStamp, timeZone) => {
+  const dt = new Date((timeStamp + timeZone - 3600) * 1000);
+  const hours = dt.getHours(); //Current Hours
+  const min = dt.getMinutes(); //Current Minutes
   if (min >= 0 && min <= 9) return `${hours}:0${min}`;
   return hours + ':' + min;
 };

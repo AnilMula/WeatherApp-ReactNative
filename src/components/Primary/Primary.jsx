@@ -3,8 +3,9 @@ import { View, Text, StyleSheet, ActivityIndicator, Image } from 'react-native';
 import { date, time } from '../../Services/Metrics';
 import { Temperature } from '../Temperature/Temperature';
 
-export const Primary = ({ temp, city, desc, icon }) => {
+export const Primary = ({ temp, city, desc, icon, timeStamp, timeZone }) => {
   const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png`;
+
   return (
     <View style={{ alignItems: 'center' }}>
       <View>
@@ -12,7 +13,7 @@ export const Primary = ({ temp, city, desc, icon }) => {
       </View>
       <View>
         <Text style={styles.dateTime}>
-          {date()} {time()}
+          {date(timeStamp, timeZone)} {time(timeStamp, timeZone)}
         </Text>
       </View>
       <View style={styles.text}>
@@ -36,7 +37,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 24,
     fontWeight: 'bold',
-    alignItems: 'center',
   },
   dateTime: {
     color: 'white',

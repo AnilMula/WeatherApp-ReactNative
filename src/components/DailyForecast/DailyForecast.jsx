@@ -3,7 +3,7 @@ import { View, Text, Image } from 'react-native';
 import { day } from '../../Services/Metrics';
 import { Temperature } from '../Temperature/Temperature';
 
-export const DailyForecast = ({ weekly }) => {
+export const DailyForecast = ({ weekly, timeZone }) => {
   return (
     <View
       style={{
@@ -21,7 +21,7 @@ export const DailyForecast = ({ weekly }) => {
       {weekly?.slice(1).map((data) => (
         <View key={data.dt}>
           <Text>
-            {day(data.dt)}
+            {day(data.dt + timeZone)}
             {'     '}
           </Text>
 

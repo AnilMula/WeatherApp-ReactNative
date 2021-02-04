@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Text, View, StyleSheet, ActivityIndicator } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import { Header } from './Header/Header';
 import { Primary } from './Primary/Primary';
 import { getWeatherByCityName, forecastFor7days } from '../Services/index';
@@ -8,7 +8,7 @@ import { DailyForecast } from '../components/DailyForecast/DailyForecast';
 import { Secondary } from '../components/Secondary/Secondary';
 
 export const HomeScreen = () => {
-  const [city, setCity] = useState('Copenhagen');
+  const [city, setCity] = useState('delhi');
   const [weatherData, setWeatherData] = useState(null);
   const [dailyData, setDailyData] = useState(null);
 
@@ -31,18 +31,29 @@ export const HomeScreen = () => {
     refreshForCity();
   }, []);
   return (
-    <View style={styles.bgColor}>
+    <ScrollView style={styles.bgColor}>
       <Header />
       <Primary
         temp={weatherData?.main?.temp}
         city={weatherData?.name}
         desc={weatherData?.weather[0]?.description}
         icon={weatherData?.weather[0]?.icon}
+        timeStamp={dailyData?.current?.dt}
+        timeZone={dailyData?.timezone_offset}
       />
-      <HourlyForecast hourly={dailyData?.hourly} />
-      <DailyForecast weekly={dailyData?.daily} />
-      <Secondary current={dailyData?.current} />
-    </View>
+      <HourlyForecast
+        hourly={dailyData?.hourly}
+        timeZone={dailyData?.timezone_offset}
+      />
+      <DailyForecast
+        weekly={dailyData?.daily}
+        timeZone={dailyData?.timezone_offset}
+      />
+      <Secondary
+        current={dailyData?.current}
+        timeZone={dailyData?.timezone_offset}
+      />
+    </ScrollView>
   );
 };
 const styles = StyleSheet.create({

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ActivityIndicator } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
 export const List = ({ name, head, value, color }) => {
@@ -23,7 +23,11 @@ export const List = ({ name, head, value, color }) => {
         <Text style={{ color: 'white', fontSize: 18 }}>{head}</Text>
       </View>
       <View style={{ alignContent: 'flex-end' }}>
-        <Text style={{ color: 'white', fontSize: 18 }}>{value}</Text>
+        {!isNaN(value) ? (
+          <ActivityIndicator size="small" color="#0000ff" />
+        ) : (
+          <Text style={{ color: 'white', fontSize: 18 }}>{value}</Text>
+        )}
       </View>
     </View>
   );
