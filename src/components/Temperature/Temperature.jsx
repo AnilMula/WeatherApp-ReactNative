@@ -1,52 +1,35 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-export const Temperature = ({ temp, size }) => {
+import React, { useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+export const Temperature = ({ temp, a, b, c }) => {
   // temperature from present url is in units 'Kelvin'
   // convert it to degree centigrade and round off
   const degCentigrade = Math.round(temp - 273.15);
 
-  if (size === 'large')
+  const styles = StyleSheet.create({
+    x: { fontSize: a, color: 'white' },
+    y: { fontSize: b, color: 'white' },
+    z: { fontSize: c, color: 'white' },
+    wrapper: { flexDirection: 'row', justifyContent: 'center' },
+    temp: { alignItems: 'flex-end' },
+    superScript: { alignItems: 'flex-start' },
+    symbolC: { alignItems: 'flex-start' },
+  });
+
+  const FormatTemperature = () => {
     return (
-      <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-        <View style={{ alignItems: 'flex-end' }}>
-          <Text style={{ fontSize: 40, color: 'white' }}>{degCentigrade}</Text>
+      <View style={styles.wrapper}>
+        <View style={styles.temp}>
+          <Text style={styles.x}>{degCentigrade}</Text>
         </View>
-        <View style={{ alignItems: 'flex-start' }}>
-          <Text style={{ fontSize: 10, color: 'white' }}>{'o'}</Text>
+        <View style={styles.superScript}>
+          <Text style={styles.y}>{'o'}</Text>
         </View>
 
-        <View style={{ alignItems: 'flex-start' }}>
-          <Text style={{ fontSize: 20, color: 'white' }}>{'C'}</Text>
+        <View style={styles.symbolC}>
+          <Text style={styles.z}>{'C'}</Text>
         </View>
       </View>
     );
-  if (size === 'small')
-    return (
-      <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-        <View style={{ alignItems: 'flex-end' }}>
-          <Text style={{ fontSize: 10, color: 'white' }}>{degCentigrade}</Text>
-        </View>
-        <View style={{ alignItems: 'flex-start' }}>
-          <Text style={{ fontSize: 3, color: 'white' }}>{'o'}</Text>
-        </View>
-
-        <View style={{ alignItems: 'flex-start' }}>
-          <Text style={{ fontSize: 5, color: 'white' }}>{'C'}</Text>
-        </View>
-      </View>
-    );
-  return (
-    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-      <View style={{ alignItems: 'flex-end' }}>
-        <Text style={{ fontSize: 20, color: 'white' }}>{degCentigrade}</Text>
-      </View>
-      <View style={{ alignItems: 'flex-start' }}>
-        <Text style={{ fontSize: 5, color: 'white' }}>{'o'}</Text>
-      </View>
-
-      <View style={{ alignItems: 'flex-start' }}>
-        <Text style={{ fontSize: 10, color: 'white' }}>{'C'}</Text>
-      </View>
-    </View>
-  );
+  };
+  return <FormatTemperature />;
 };

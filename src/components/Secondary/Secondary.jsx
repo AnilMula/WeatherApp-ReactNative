@@ -1,49 +1,49 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { List } from '../List/List';
+import { ListItem } from '../ListItem/ListItem';
 import { hour, percent, pressure, uvi, speed } from '../../Services/Metrics';
 import { Temperature } from '../Temperature/Temperature';
 
 export const Secondary = ({ current, timeZone }) => {
   return (
     <View style={styles.wrapper}>
-      <List
+      <ListItem
         name={'sunrise'}
         color={'red'}
         head={'Sun Rise'}
         value={hour(current?.sunrise + timeZone)}
       />
-      <List
+      <ListItem
         name={'sunset'}
         color={'purple'}
         head={'Sun Set'}
         value={hour(current?.sunset + timeZone)}
       />
-      <List
+      <ListItem
         name={'thermometer'}
         color={'blue'}
         head={'Feels Like'}
-        value={<Temperature temp={current?.feels_like} />}
+        value={<Temperature temp={current?.feels_like} a={20} b={5} c={10} />}
       />
-      <List
+      <ListItem
         name={'underline'}
         color={'blue'}
         head={'Pressure'}
         value={pressure(current?.pressure)}
       />
-      <List
+      <ListItem
         name={'droplet'}
         color={'blue'}
         head={'Humidity'}
         value={percent(current?.humidity)}
       />
-      <List
+      <ListItem
         name={'umbrella'}
         color={'blue'}
         head={'UVI'}
         value={uvi(current?.uvi)}
       />
-      <List
+      <ListItem
         name={'wind'}
         color={'blue'}
         head={'Wind Speed'}

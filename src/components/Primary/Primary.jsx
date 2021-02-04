@@ -26,7 +26,7 @@ export const Primary = ({ temp, city, desc, icon, timeStamp, timeZone }) => {
         {isNaN(temp) ? (
           <ActivityIndicator size="small" color="#0000ff" />
         ) : (
-          <Temperature temp={temp} size={'large'} />
+          <Temperature temp={temp} a={40} b={10} c={20} />
         )}
       </View>
     </View>
