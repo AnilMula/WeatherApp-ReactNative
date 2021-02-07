@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeScreen } from './src/components/HomeScreen';
 import { WeeklyScreen } from './src/components/WeeklyScreen';
 import { Feather } from '@expo/vector-icons';
+import { LeftDrawer } from './src/components/LeftDrawer/LeftDrawer';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,7 +13,7 @@ const App = () => {
       <Tab.Navigator>
         <Tab.Screen
           name="Home"
-          component={HomeScreen}
+          component={LeftDrawer}
           options={{
             title: 'Weather Info',
             tabBarIcon: () => {

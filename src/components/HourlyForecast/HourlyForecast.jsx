@@ -1,27 +1,32 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import { hour, time } from '../../Services/Metrics';
 import { Temperature } from '../Temperature/Temperature';
 
 export const HourlyForecast = ({ hourly, timeZone }) => {
   return (
     <View style={styles.wrapper}>
-      {hourly?.slice(1, 8).map((data) => (
-        <View key={data.dt}>
-          <Text>{hour(data.dt + timeZone - 3600)}</Text>
-          <View style={styles.imgWrapper}>
-            <Image
-              style={styles.img}
-              source={{
-                uri: `https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`,
-              }}
-            />
+      <ScrollView horizontal={true}>
+        {hourly?.map((data) => (
+          <View key={data.dt}>
+            <Text>
+              {hour(data.dt + timeZone - 3600)}
+              {'  '}
+            </Text>
+            <View style={styles.imgWrapper}>
+              <Image
+                style={styles.img}
+                source={{
+                  uri: `https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`,
+                }}
+              />
+            </View>
+            <Text>
+              <Temperature temp={data.temp} a={10} b={3} c={5} />
+            </Text>
           </View>
-          <Text>
-            <Temperature temp={data.temp} a={10} b={3} c={5} />
-          </Text>
-        </View>
-      ))}
+        ))}
+      </ScrollView>
     </View>
   );
 };

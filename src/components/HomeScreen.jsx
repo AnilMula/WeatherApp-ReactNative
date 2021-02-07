@@ -7,8 +7,7 @@ import { HourlyForecast } from './HourlyForecast/HourlyForecast';
 import { DailyForecast } from '../components/DailyForecast/DailyForecast';
 import { Secondary } from '../components/Secondary/Secondary';
 
-export const HomeScreen = () => {
-  const [city, setCity] = useState('delhi');
+export const HomeScreen = ({ city }) => {
   const [weatherData, setWeatherData] = useState(null);
   const [dailyData, setDailyData] = useState(null);
 
@@ -29,7 +28,7 @@ export const HomeScreen = () => {
 
   useEffect(() => {
     refreshForCity();
-  }, []);
+  }, [city]);
   return (
     <ScrollView style={styles.bgColor}>
       <Header />
